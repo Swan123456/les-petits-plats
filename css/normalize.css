@@ -1,0 +1,28 @@
+/* Correction des styles par défaut pour certains éléments */
+ol, ul {
+  list-style: none;
+  padding: 0;
+}
+
+/* Elements en ligne (inline) */
+a {
+  text-decoration: none;
+}
+
+/* Images et objets */
+img, object {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Styles pour les éléments de formulaire */
+button, input, select, textarea {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+/* Elements en ligne imbriqués */
+a {
+  text-decoration: none;
+}

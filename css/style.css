@@ -1,0 +1,156 @@
+:root {
+  --couleur-principale: #ffd15b;
+}
+
+header {
+  background-image: url("/assets/fond_header.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: auto;
+  height: 667px;
+  position: relative;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.logo {
+  position: absolute;
+  width: 207px;
+  height: 25.26px;
+  top: 51px;
+  left: 69px;
+}
+
+blockquote {
+  text-align: center;
+  width: 80%;
+}
+
+h1 {
+  color: var(--couleur-principale);
+  font-family: Anton;
+  font-size: 44px;
+  font-weight: 400;
+  line-height: 66px;
+  letter-spacing: 0em;
+}
+
+h2 {
+  font-family: Anton;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 27px;
+}
+
+h3 {
+  color: #7A7A7A;
+  font-family: Manrope;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+p {
+  font-family: Manrope;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 19px;
+}
+
+input {
+  margin-top: 1rem;
+  width: 100%;
+  height: 72px;
+  left: 243px;
+  border-radius: 10px;
+}
+
+.input-container {
+  position: relative;
+}
+
+.input-container input {
+  padding-right: 40px; 
+  border-radius: 20px; 
+}
+
+.input-container .icon-container {
+  position: absolute;
+  top: 59%;
+  right: 1rem;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  background-color: black; 
+  border-radius: 30%; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.input-container .icon-container i {
+  color: #fff; 
+}
+
+/* Style pour les cartes de recettes */
+.recipe {
+  position: relative;
+  width: 380px;
+  border-radius: 22px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.recipe__content {
+  padding: 2rem;
+}
+
+.recipe__cover img {
+  width: 100%;
+  background-size: cover;
+  object-fit: cover; 
+  height: 252px;
+  border-radius: 21px 21px 0 0;
+}
+
+.recipe__indic {
+  margin-top: 1.5rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.recipe__description {
+  font-size: 1rem;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+/* Style pour la liste d'ingrédients */
+.recipe__ingredient ul {
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+.recipe__time {
+  z-index: 11;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 65px;
+  height: 26px;
+  top: 1rem;
+  right: 1rem;
+  border-radius: 14px;
+  position: absolute;
+  background-color: var(--couleur-principale);
+}
+
+/* Style pour le temps de préparation */
+.recipe__step p:last-child {
+  font-weight: bold;
+}
+
+.recipe__quantity {
+  color: #7A7A7A;
+}

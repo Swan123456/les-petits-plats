@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Les petits plats</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+    <link href="css/style.css" rel="stylesheet" />
+    <link href="css/normalize.css" rel="stylesheet" />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" src="script/index.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Anton&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link 
+    href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope&display=swap" 
+    rel="stylesheet">
+    <script
+      src="https://kit.fontawesome.com/0a21fd0714.js"
+      crossorigin="anonymous"
+    ></script>
+    <title>Les petits plats | Accueil</title>
+  </head>
+  <body>
+    <header>
+      <a href="index.html">
+        <img src="assets/logo.svg" class="logo" alt="logo les petits plats" />
+      </a>
+      <blockquote>
+        <h1>
+          CHERCHEZ PARMI PLUS DE 1500 RECETTES DU QUOTIDIEN,SIMPLES ET
+          DÉLICIEUSES
+        </h1>
+        <div class="input-container">
+          <input type="text" placeholder="Rechercher..." />
+          <span class="icon-container">
+            <i class="fas fa-search"></i>
+          </span>
+        </div>
+      </blockquote>
+    </header>
+    <main id="main">
+    <div class="row">
+      <div id="filter" class="col">Filter</div>
+      <div class="col">1500 Recettes</div>
+    </div>
+    <ul id="recipes_section" class="row"></ul>
+    </main>
+  </body>
+</html>

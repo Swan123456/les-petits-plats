@@ -3,7 +3,7 @@
 }
 
 header {
-  background-image: url("/assets/fond_header.svg");
+  background-image: url("/assets/fond_header.jpeg");
   background-repeat: no-repeat;
   background-size: cover;
   width: 100%;
@@ -94,6 +94,15 @@ input {
 }
 
 /* Style pour les cartes de recettes */
+#recipe_section {
+  justify-content: space-around;
+  padding: 0 5rem 0 5rem;
+}
+
+#recipe_section > li {
+  padding: 1rem;
+}
+
 .recipe {
   position: relative;
   width: 380px;
@@ -153,4 +162,24 @@ input {
 
 .recipe__quantity {
   color: #7A7A7A;
+}
+
+/* Section filtre */
+#filters {
+  display: flex;
+  flex-wrap: wrap;
+  flex-grow: 4;
+  gap: 2rem;
+
+  position: relative;
+}
+
+
+.filter__ingredients, .filter__appliances, .filter__ustensils {
+  border: none;
+  
+  width: auto;
+  max-width: 667px;
+  
+  margin: 0;
 }

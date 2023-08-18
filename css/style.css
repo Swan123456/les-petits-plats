@@ -165,21 +165,8 @@ input {
 }
 
 /* Section filtre */
-#filters {
+#filter {
   display: flex;
-  flex-wrap: wrap;
-  flex-grow: 4;
   gap: 2rem;
-
-  position: relative;
-}
-
-
-.filter__ingredients, .filter__appliances, .filter__ustensils {
-  border: none;
-  
-  width: auto;
-  max-width: 667px;
-  
-  margin: 0;
+  padding: 0 6rem 0 6rem;
 }

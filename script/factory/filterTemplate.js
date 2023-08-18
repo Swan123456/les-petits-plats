@@ -24,20 +24,19 @@ export default class FilterSelectTemplate {
    * @returns {HtmlElement}
    */
   createFilter(tabRecipes) {
-    this.$wrapper = document.createElement("div");
-    this.$wrapper.classList.add("filter-selector");
+    this.$wrapper = document.getElementById("filter");
 
     // Génération des filtres pour les ingrédients, les appareils et les ustensiles
     const content = `
-      <select multiple aria-label="Filtre ingredients">
+      <select class="form-select-lg mb-3 col-md-3" aria-label="Filtre ingredients">
         <option selected>Sélectionnez un ingredients</option>
         ${createIngredientsFilter(tabRecipes)}
       </select>
-      <select multiple aria-label="Filtre appareils">
+      <select class="form-select-lg mb-3 col-md-3" aria-label="Filtre appareils">
         <option selected>Sélectionnez un appareils</option>
         ${createAppliancesFilter(tabRecipes)}
       </select>
-      <select multiple aria-label="Filtre appareils">
+      <select class="form-select-lg mb-3 col-md-3" aria-label="Filtre ustencils">
         <option selected>Sélectionnez un appareils</option>
         ${createUstensilsFilter(tabRecipes)}
       </select>

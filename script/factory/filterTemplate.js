@@ -7,6 +7,9 @@ export default class FilterSelectTemplate {
   constructor() {
     this.$wrapper = null;
     this._observerNode = null;
+    this.ingredientsSelect = null;
+    this.appliancesSelect = null;
+    this.ustensilsSelect = null;
   }
 
   /**
@@ -43,8 +46,29 @@ export default class FilterSelectTemplate {
     `;
 
     this.$wrapper.innerHTML = content;
+
+    this.ingredientsSelect = this.$wrapper.querySelector(".form-select-lg:nth-child(1)");
+    this.appliancesSelect = this.$wrapper.querySelector(".form-select-lg:nth-child(2)");
+    this.ustensilsSelect = this.$wrapper.querySelector(".form-select-lg:nth-child(3)");
+    
+    this.ingredientsSelect.addEventListener("change", this.applyFilters.bind(this, tabRecipes));
+    this.appliancesSelect.addEventListener("change", this.applyFilters.bind(this, tabRecipes));
+    this.ustensilsSelect.addEventListener("change", this.applyFilters.bind(this, tabRecipes));
+    
     this._observerNode = this.$wrapper.querySelector(".selector");
     return this.$wrapper;
+  }
+
+  applyFilters(tabRecipes) {
+  
+    // Récupére l'élément sélectionné dans la liste déroulante
+    const selectedIngredient = this.ingredientsSelect.value;
+    const selectedAppliance = this.appliancesSelect.value;
+    const selectedUstensil = this.ustensilsSelect.value;
+
+    console.log(selectedIngredient);
+    console.log(selectedAppliance);
+    console.log(selectedUstensil);
   }
 }
 
@@ -66,7 +90,7 @@ export function createIngredientsFilter(recipes) {
   // Convertit l'ensemble en tableau sans doublons
   const ingredients = Array.from(ingredientsSet);
   ingredients.forEach(ingredient => {
-    content += `<option>${ingredient}</option>`
+    content += `<option value="${ingredient}">${ingredient}</option>`
   })
 
   return content;

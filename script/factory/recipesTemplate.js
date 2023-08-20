@@ -9,7 +9,6 @@ export default class RecipeTemplate {
   constructor(recipe) {
     this._recipe = recipe;
   }
-
   /**
    * Template pour la Card recipe
    * @returns {HTMLElement}

@@ -5,10 +5,6 @@ import Recipe from './models/recipe.js'
 import FilterSelectTemplate from './factory/filterTemplate.js'
 import { createIngredientsFilter, createAppliancesFilter, createUstensilsFilter } from './factory/filterTemplate.js';
 
-// Variables de pagination
-const recettesParPage = 1;
-let pageCourante = 1;
-
 async function init () {
   // Node HTML dans lequel on insert la list des recettes
   const $recipesWrapper = document.querySelector('#recipe_section')

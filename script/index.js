@@ -4,15 +4,16 @@ import RecipeTemplate from './factory/recipesTemplate.js'
 import Recipe from './models/recipe.js'
 import FilterSelectTemplate from './factory/filterTemplate.js'
 import { createIngredientsFilter, createAppliancesFilter, createUstensilsFilter } from './factory/filterTemplate.js';
+import { searchRecipesWithLoops } from './controller/filter.js'
 
 async function init () {
   // Node HTML dans lequel on insert la list des recettes
   const $recipesWrapper = document.querySelector('#recipe_section')
   const $filterWrapper = document.querySelector('#filter')
-
+  
   // Instance de la Class API
   const data = new Api('../data/recipes.json')
-
+  
   // Récupère les datas des recipes
   const recipes = await data.getRecipes()
   const tabRecipes = []
@@ -22,16 +23,21 @@ async function init () {
     const recipe = new Recipe(element)
     tabRecipes.push(recipe)
   })
+  
+  const recipeTemplate = new RecipeTemplate(); 
+  
   recipes.templateFilter = new FilterSelectTemplate()
-
+  
   // Creation des Card et insertion dans le DOM
   tabRecipes.forEach(element => {
-    const recipeSTemplate = new RecipeTemplate(element)
-    $recipesWrapper.appendChild(recipeSTemplate.createRecipeCard())
+    const recipesTemplate = new RecipeTemplate(element)
+    $recipesWrapper.appendChild(recipesTemplate.createRecipeCard())
   })
-
+  
   // Insertion des filtre dans le DOM
-  $filterWrapper.appendChild(recipes.templateFilter.createFilter(tabRecipes))
+  const filterTemplate = new FilterSelectTemplate();
+  filterTemplate.addObserver(recipeTemplate);
+  $filterWrapper.appendChild(filterTemplate.createFilter(tabRecipes))
 }
 
 init()

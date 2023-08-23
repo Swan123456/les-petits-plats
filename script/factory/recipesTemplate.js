@@ -6,8 +6,10 @@ export default class RecipeTemplate {
   /**
    * @param {Recipe} recipe
    */
-  constructor(recipe) {
+  constructor(recipe, filterData) {
     this._recipe = recipe;
+    this._filter = filterData; 
+    // this._filter.addObserver(this);
   }
   /**
    * Template pour la Card recipe
@@ -50,5 +52,11 @@ export default class RecipeTemplate {
     `;
     this.$wrapperCard.innerHTML = card;
     return this.$wrapperCard;
+  }
+
+  update(data) {
+    const $recipesWrapper = document.querySelector('#recipe_section');
+    $recipesWrapper.innerHTML = ''; 
+    console.log(data);
   }
 }

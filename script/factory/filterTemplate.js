@@ -6,10 +6,11 @@
 export default class FilterSelectTemplate {
   constructor() {
     this.$wrapper = null;
-    this._observerNode = null;
+    this.searchInput = null;
     this.ingredientsSelect = null;
     this.appliancesSelect = null;
     this.ustensilsSelect = null;
+    this.observers = [];
   }
 
   /**
@@ -18,80 +19,112 @@ export default class FilterSelectTemplate {
   get filterHtmlElement() {
     return this.$wrapper;
   }
-
-  get observerNode() {
-    return this._observerNode;
-  }
-
+  
   /**
    * @returns {HtmlElement}
-   */
-  createFilter(tabRecipes) {
+  */
+ createFilter(tabRecipes) {
     this.$wrapper = document.getElementById("filter");
+    this.$searchInput = document.getElementById("search");
 
     // Génération des filtres pour les ingrédients, les appareils et les ustensiles
     const content = `
       <select class="form-select-lg mb-3 col-md-3" aria-label="Filtre ingredients">
-        <option selected>Sélectionnez un ingredients</option>
+        <option value="">Sélectionnez un ingredients</option>
         ${createIngredientsFilter(tabRecipes)}
       </select>
       <select class="form-select-lg mb-3 col-md-3" aria-label="Filtre appareils">
-        <option selected>Sélectionnez un appareils</option>
+        <option value="">Sélectionnez un appareils</option>
         ${createAppliancesFilter(tabRecipes)}
       </select>
       <select class="form-select-lg mb-3 col-md-3" aria-label="Filtre ustencils">
-        <option selected>Sélectionnez un appareils</option>
+        <option value="">Sélectionnez un appareils</option>
         ${createUstensilsFilter(tabRecipes)}
       </select>
     `;
 
     this.$wrapper.innerHTML = content;
 
-    this.ingredientsSelect = this.$wrapper.querySelector(".form-select-lg:nth-child(1)");
-    this.appliancesSelect = this.$wrapper.querySelector(".form-select-lg:nth-child(2)");
-    this.ustensilsSelect = this.$wrapper.querySelector(".form-select-lg:nth-child(3)");
+    this.ingredientsSelect = this.$wrapper.querySelector(
+      ".form-select-lg:nth-child(1)"
+    );
+    this.appliancesSelect = this.$wrapper.querySelector(
+      ".form-select-lg:nth-child(2)"
+    );
+    this.ustensilsSelect = this.$wrapper.querySelector(
+      ".form-select-lg:nth-child(3)"
+    );
+
     
-    this.ingredientsSelect.addEventListener("change", this.applyFilters.bind(this, tabRecipes));
-    this.appliancesSelect.addEventListener("change", this.applyFilters.bind(this, tabRecipes));
-    this.ustensilsSelect.addEventListener("change", this.applyFilters.bind(this, tabRecipes));
+    this.$searchInput.addEventListener("input", () => {
+      const searchBar = this.$searchInput.value.trim().toLowerCase();
+      if (searchBar.length >= 3) {
+        this.notifyObservers(searchBar);
+      } else {
+        this.notifyObservers("");
+      }
+    });
     
-    this._observerNode = this.$wrapper.querySelector(".selector");
+    this.ingredientsSelect.addEventListener(
+      "change",
+      this.applyFilters.bind(this, tabRecipes)
+    );
+    this.appliancesSelect.addEventListener(
+      "change",
+      this.applyFilters.bind(this, tabRecipes)
+    );
+    this.ustensilsSelect.addEventListener(
+      "change",
+      this.applyFilters.bind(this, tabRecipes)
+    );
+
     return this.$wrapper;
   }
 
-  applyFilters(tabRecipes) {
-  
+  applyFilters() {
     // Récupére l'élément sélectionné dans la liste déroulante
     const selectedIngredient = this.ingredientsSelect.value;
     const selectedAppliance = this.appliancesSelect.value;
     const selectedUstensil = this.ustensilsSelect.value;
+    // Une fois que les filtres sont appliqués, ont notifie les observateurs
+    const data = {
+      selectedIngredient: selectedIngredient,
+      selectedAppliance: selectedAppliance,
+      selectedUstensil: selectedUstensil
+    };
+    this.notifyObservers(data);
+  }
 
-    console.log(selectedIngredient);
-    console.log(selectedAppliance);
-    console.log(selectedUstensil);
+  addObserver(observer) {
+    this.observers.push(observer);
+  }
+  
+  notifyObservers(data) {
+    this.observers.forEach((observer) => {
+      observer.update(data);
+    });
   }
 }
-
 /**
  * Crée le contenu du filtre d'ingrédients
  * @param {Array} recipes
  * @returns {string}
  */
 export function createIngredientsFilter(recipes) {
-  let content = '';
+  let content = "";
 
   const ingredientsList = [];
-  recipes.forEach(recipe => {
-    recipe.ingredients.forEach(ingredient => {
-      ingredientsList.push(ingredient.ingredient); 
+  recipes.forEach((recipe) => {
+    recipe.ingredients.forEach((ingredient) => {
+      ingredientsList.push(ingredient.ingredient);
     });
   });
   const ingredientsSet = new Set(ingredientsList);
   // Convertit l'ensemble en tableau sans doublons
   const ingredients = Array.from(ingredientsSet);
-  ingredients.forEach(ingredient => {
-    content += `<option value="${ingredient}">${ingredient}</option>`
-  })
+  ingredients.forEach((ingredient) => {
+    content += `<option value="${ingredient}">${ingredient}</option>`;
+  });
 
   return content;
 }
@@ -102,11 +135,11 @@ export function createIngredientsFilter(recipes) {
  * @returns {string}
  */
 export function createAppliancesFilter(recipes) {
-  let content = '';
+  let content = "";
   const appliancesList = [];
-  recipes.forEach(recipe => {
+  recipes.forEach((recipe) => {
     if (Array.isArray(recipe.appliance)) {
-      recipe.appliance.forEach(appliance => {
+      recipe.appliance.forEach((appliance) => {
         appliancesList.push(appliance);
       });
     } else {
@@ -116,9 +149,9 @@ export function createAppliancesFilter(recipes) {
   const appliancesSet = new Set(appliancesList);
   // Convertit l'ensemble en tableau sans doublons
   const appliances = Array.from(appliancesSet);
-  appliances.forEach(appliance => {
-    content += `<option>${appliance}</option>`
-  })
+  appliances.forEach((appliance) => {
+    content += `<option>${appliance}</option>`;
+  });
   return content;
 }
 
@@ -128,11 +161,11 @@ export function createAppliancesFilter(recipes) {
  * @returns {string}
  */
 export function createUstensilsFilter(recipes) {
-  let content = '';
+  let content = "";
   const ustensilsList = [];
-  recipes.forEach(recipe => {
+  recipes.forEach((recipe) => {
     if (Array.isArray(recipe.ustensils)) {
-      recipe.ustensils.forEach(ustensil => {
+      recipe.ustensils.forEach((ustensil) => {
         ustensilsList.push(ustensil);
       });
     } else {
@@ -142,8 +175,8 @@ export function createUstensilsFilter(recipes) {
   const ustensilsSet = new Set(ustensilsList);
   // Convertit l'ensemble en tableau sans doublons
   const ustensil = Array.from(ustensilsSet);
-  ustensil.forEach(ustensil => {
-    content += `<option>${ustensil}</option>`
-  })
+  ustensil.forEach((ustensil) => {
+    content += `<option>${ustensil}</option>`;
+  });
   return content;
 }

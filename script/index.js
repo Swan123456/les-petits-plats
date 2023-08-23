@@ -3,8 +3,6 @@ import Api from './api/api.js'
 import RecipeTemplate from './factory/recipesTemplate.js'
 import Recipe from './models/recipe.js'
 import FilterSelectTemplate from './factory/filterTemplate.js'
-import { createIngredientsFilter, createAppliancesFilter, createUstensilsFilter } from './factory/filterTemplate.js';
-import { searchRecipesWithLoops } from './controller/filter.js'
 
 async function init () {
   // Node HTML dans lequel on insert la list des recettes
@@ -36,7 +34,8 @@ async function init () {
   
   // Insertion des filtre dans le DOM
   const filterTemplate = new FilterSelectTemplate();
-  filterTemplate.addObserver(recipeTemplate);
+  filterTemplate.notifyObservers()
+  filterTemplate.addObserver(recipeTemplate, tabRecipes);
   $filterWrapper.appendChild(filterTemplate.createFilter(tabRecipes))
 }
 

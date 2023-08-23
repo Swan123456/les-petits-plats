@@ -1,15 +1,28 @@
-export function searchRecipesWithLoops(data) {
+export function filterRecipes(data, tabRecipes, filters) {
   console.log(data);
-  const filteredRecipes = [];
-
-  for (const recipe of recipes) {
-    const ingredientsMatch = selectedIngredient === recipe.ingredients.some(ingredient => ingredient.ingredient === selectedIngredient);
-    const applianceMatch = selectedAppliance === "Sélectionnez un appareil" || recipe.appliance === selectedAppliance;
-    const ustensilMatch = selectedUstensil === "Sélectionnez un ustensile" || recipe.ustensils.includes(selectedUstensil);
-
-    if (ingredientsMatch && applianceMatch && ustensilMatch) {
-      filteredRecipes.push(recipe);
+  // return tabRecipes.filter((recipe) => {
+  const recipesFiltrees = tabRecipes.filter((recipe) => {
+    // Filtrer par la bar de recherche
+    if (data.searchBar && !recipe.name.includes(data.searchBar)) {
+      return false;
     }
-  }
-  return filteredRecipes;
+
+    // Filtrer par ingrédient
+    if (data.selectedIngredient && !recipe.ingredients.some(ingredients => ingredients.ingredient.includes(data.selectedIngredient))) {
+      return false;
+    }
+    
+    // Filtrer par appareil
+    if (data.selectedAppliance && !recipe.appliance.includes(data.selectedAppliance)) {
+      return false;
+    }
+    // Filtrer par ustensile
+    if (data.selectedUstensil && !recipe.ustensils.some(ustensil => ustensil.includes(data.selectedUstensil))) {
+      return false;
+    }
+
+    // Si aucune condition de filtrage ne correspond, la recette est conservée
+    return true;
+  });
+  console.log("Recettes filtrées :", recipesFiltrees);
 }

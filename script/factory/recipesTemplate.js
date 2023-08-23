@@ -1,3 +1,5 @@
+import { filterRecipes } from '../controller/filter.js'
+
 /**
  * Templates Recettes
  * @property {HTMLElement} btnModal
@@ -9,7 +11,6 @@ export default class RecipeTemplate {
   constructor(recipe, filterData) {
     this._recipe = recipe;
     this._filter = filterData; 
-    // this._filter.addObserver(this);
   }
   /**
    * Template pour la Card recipe
@@ -54,9 +55,9 @@ export default class RecipeTemplate {
     return this.$wrapperCard;
   }
 
-  update(data) {
+  update(data, recipes) {
     const $recipesWrapper = document.querySelector('#recipe_section');
     $recipesWrapper.innerHTML = ''; 
-    console.log(data);
+    filterRecipes(data, recipes)
   }
 }

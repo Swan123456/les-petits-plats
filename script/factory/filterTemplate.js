@@ -20,6 +20,7 @@ export default class FilterSelectTemplate {
     return this.$wrapper;
   }
   
+  
   /**
    * @returns {HtmlElement}
   */
@@ -57,11 +58,11 @@ export default class FilterSelectTemplate {
 
     
     this.$searchInput.addEventListener("input", () => {
-      const searchBar = this.$searchInput.value.trim().toLowerCase();
+      const searchBar = this.$searchInput.value.trim();
       if (searchBar.length >= 3) {
-        this.notifyObservers(searchBar);
+        this.notifyObservers({ searchBar }, tabRecipes);
       } else {
-        this.notifyObservers("");
+        this.notifyObservers("", tabRecipes);
       }
     });
     
@@ -81,7 +82,7 @@ export default class FilterSelectTemplate {
     return this.$wrapper;
   }
 
-  applyFilters() {
+  applyFilters(tabRecipes) {
     // Récupére l'élément sélectionné dans la liste déroulante
     const selectedIngredient = this.ingredientsSelect.value;
     const selectedAppliance = this.appliancesSelect.value;
@@ -92,16 +93,16 @@ export default class FilterSelectTemplate {
       selectedAppliance: selectedAppliance,
       selectedUstensil: selectedUstensil
     };
-    this.notifyObservers(data);
+    this.notifyObservers(data, tabRecipes);
   }
 
   addObserver(observer) {
     this.observers.push(observer);
   }
   
-  notifyObservers(data) {
+  notifyObservers(data, recipes) {
     this.observers.forEach((observer) => {
-      observer.update(data);
+      observer.update(data, recipes);
     });
   }
 }

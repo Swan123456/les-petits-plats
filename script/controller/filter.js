@@ -1,5 +1,7 @@
+import RecipeTemplate from '../factory/recipesTemplate.js'
+
 export function filterRecipes(data, tabRecipes, filters) {
-  console.log(data);
+  // console.log(data);
   // return tabRecipes.filter((recipe) => {
   const recipesFiltrees = tabRecipes.filter((recipe) => {
     // Filtrer par la bar de recherche
@@ -25,4 +27,12 @@ export function filterRecipes(data, tabRecipes, filters) {
     return true;
   });
   console.log("Recettes filtrées :", recipesFiltrees);
+  const $recipesWrapper = document.querySelector('#recipe_section')
+  const recipeTemplate = new RecipeTemplate;
+  recipesFiltrees.forEach(element => {
+    const recipesTemplate = new RecipeTemplate(element)
+    $recipesWrapper.appendChild(recipesTemplate.createRecipeCard())
+  })
+
+
 }

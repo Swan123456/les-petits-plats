@@ -54,10 +54,19 @@ export default class RecipeTemplate {
     this.$wrapperCard.innerHTML = card;
     return this.$wrapperCard;
   }
-
+  
   update(data, recipes) {
     const $recipesWrapper = document.querySelector('#recipe_section');
     $recipesWrapper.innerHTML = ''; 
     filterRecipes(data, recipes)
+    this.updateRecipeCounter();
+  }
+
+  updateRecipeCounter() {
+    const $recipeCounter = document.querySelector('.recipe-counter');
+    const $recipeCards = document.querySelectorAll('.recipe');
+    console.log($recipeCounter);
+    const numberOfRecipes = $recipeCards.length;
+    $recipeCounter.textContent = `${numberOfRecipes} Recettes`;
   }
 }

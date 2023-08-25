@@ -42,6 +42,7 @@ export default class FilterSelectTemplate {
         <option value="">Sélectionnez un appareils</option>
         ${createUstensilsFilter(tabRecipes)}
       </select>
+      <h2 class="col recipe-counter" style="text-align: right;">50 Recettes</h2>
     `;
 
     this.$wrapper.innerHTML = content;

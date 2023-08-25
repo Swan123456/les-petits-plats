@@ -26,6 +26,7 @@ async function init () {
   
   recipes.templateFilter = new FilterSelectTemplate()
   
+
   // Creation des Card et insertion dans le DOM
   tabRecipes.forEach(element => {
     const recipesTemplate = new RecipeTemplate(element)

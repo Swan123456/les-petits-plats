@@ -65,7 +65,6 @@ export default class RecipeTemplate {
   updateRecipeCounter() {
     const $recipeCounter = document.querySelector('.recipe-counter');
     const $recipeCards = document.querySelectorAll('.recipe');
-    console.log($recipeCounter);
     const numberOfRecipes = $recipeCards.length;
     $recipeCounter.textContent = `${numberOfRecipes} Recettes`;
   }

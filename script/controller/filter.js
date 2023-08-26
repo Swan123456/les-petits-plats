@@ -1,8 +1,6 @@
 import RecipeTemplate from '../factory/recipesTemplate.js'
 
 export function filterRecipes(data, tabRecipes, filters) {
-  // console.log(data);
-  // return tabRecipes.filter((recipe) => {
   const recipesFiltrees = tabRecipes.filter((recipe) => {
     // Filtrer par la bar de recherche
     if (data.searchBar && !recipe.name.includes(data.searchBar)) {
@@ -26,7 +24,6 @@ export function filterRecipes(data, tabRecipes, filters) {
     // Si aucune condition de filtrage ne correspond, la recette est conservée
     return true;
   });
-  console.log("Recettes filtrées :", recipesFiltrees);
   const $recipesWrapper = document.querySelector('#recipe_section')
   const recipeTemplate = new RecipeTemplate;
   recipesFiltrees.forEach(element => {

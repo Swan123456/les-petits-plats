@@ -30,6 +30,4 @@ export function filterRecipes(data, tabRecipes, filters) {
     const recipesTemplate = new RecipeTemplate(element)
     $recipesWrapper.appendChild(recipesTemplate.createRecipeCard())
   })
-
-
 }

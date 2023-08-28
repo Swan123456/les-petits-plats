@@ -39,7 +39,7 @@ export default class FilterSelectTemplate {
         ${createAppliancesFilter(tabRecipes)}
       </select>
       <select class="form-select-lg mb-3 col-md-3" aria-label="Filtre ustencils">
-        <option value="">Sélectionnez un appareils</option>
+        <option value="">Sélectionnez un ustencils</option>
         ${createUstensilsFilter(tabRecipes)}
       </select>
       <h2 class="col recipe-counter" style="text-align: right;">50 Recettes</h2>

@@ -11,6 +11,7 @@ export default class FilterSelectTemplate {
     this.appliancesSelect = null;
     this.ustensilsSelect = null;
     this.observers = [];
+    this.tags = null
   }
 
   /**
@@ -88,12 +89,45 @@ export default class FilterSelectTemplate {
     const selectedIngredient = this.ingredientsSelect.value;
     const selectedAppliance = this.appliancesSelect.value;
     const selectedUstensil = this.ustensilsSelect.value;
+
+
     // Une fois que les filtres sont appliqués, ont notifie les observateurs
     const data = {
       selectedIngredient: selectedIngredient,
       selectedAppliance: selectedAppliance,
       selectedUstensil: selectedUstensil
     };
+    this.addTags(data, tabRecipes);
+  }
+
+  addTags(data, tabRecipes) {
+    this.$tags = document.getElementById("tags");
+  
+    this.$tags.innerHTML = "";
+
+    for (const key in data) {
+      if (data[key]) {
+        const tagElement = document.createElement("div");
+        tagElement.classList.add("tag");
+
+        const textSpan = document.createElement("span");
+        textSpan.textContent = data[key];
+
+        const closeBtn = document.createElement("span");
+        closeBtn.textContent = "x";
+        closeBtn.classList.add("close-btn");
+        closeBtn.addEventListener("click", () => {
+          delete data[key];
+          this.addTags(data, tabRecipes);
+        });
+
+        tagElement.appendChild(textSpan);
+        tagElement.appendChild(closeBtn);
+  
+        tags.appendChild(tagElement);
+      }
+    }
+
     this.notifyObservers(data, tabRecipes);
   }
 

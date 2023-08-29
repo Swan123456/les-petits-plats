@@ -166,9 +166,25 @@ input {
 }
 
 /* Section filtre */
-#filter {
+#filter, #tags {
   display: flex;
   width: 100%;
   gap: 3rem;
   padding: 2rem 11rem 0 11rem;
+}
+
+#tags > div {
+  display: inline-flex;
+  padding: 17px 18px;
+  margin-bottom: 2rem;
+  align-items: center;
+  gap: 60px;
+  border-radius: 10px;
+  background: #FFD15B;
+}
+
+.close-btn {
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 1rem;
 }

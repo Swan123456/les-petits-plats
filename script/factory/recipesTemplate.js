@@ -39,7 +39,7 @@ export default class RecipeTemplate {
       <article class="recipe" aria-label="${this._recipe.name}">
         <p class="recipe__time">${this._recipe.time}min</p> 
         <div class="recipe__cover">
-          <img width="100" src="${this._recipe.image}" alt="${this._recipe.name}" loading="lazy" />
+          <img width="100" src="${this._recipe.image}" alt="${this._recipe.name}" loading="lazy" style="quality: 50"/>
           <div class="loader"></div>
         </div>        
         <div class="recipe__content">

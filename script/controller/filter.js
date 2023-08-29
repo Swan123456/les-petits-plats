@@ -45,4 +45,8 @@ export function filterRecipes(data, tabRecipes, filters) {
     const recipesTemplate = new RecipeTemplate(element)
     $recipesWrapper.appendChild(recipesTemplate.createRecipeCard())
   })
+
+  if (recipesFiltrees.length === 0) {
+    $recipesWrapper.innerHTML = `<h2 class="text-center" style="">Aucune recette ne correspond aux critères de filtrage.</h2>`  
+  }
 }

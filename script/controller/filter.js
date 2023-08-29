@@ -24,10 +24,14 @@ export function filterRecipes(data, tabRecipes, filters) {
     // Si aucune condition de filtrage ne correspond, la recette est conservée
     return true;
   });
+
   const $recipesWrapper = document.querySelector('#recipe_section')
   const recipeTemplate = new RecipeTemplate;
   recipesFiltrees.forEach(element => {
     const recipesTemplate = new RecipeTemplate(element)
     $recipesWrapper.appendChild(recipesTemplate.createRecipeCard())
   })
+  if (recipesFiltrees.length === 0) {
+    $recipesWrapper.innerHTML = `<h2 class="text-center" style="">Aucune recette ne correspond aux critères de filtrage.</h2>`  
+  }
 }

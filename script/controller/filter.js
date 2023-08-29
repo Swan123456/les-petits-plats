@@ -3,21 +3,21 @@ import RecipeTemplate from '../factory/recipesTemplate.js'
 export function filterRecipes(data, tabRecipes, filters) {
   const recipesFiltrees = tabRecipes.filter((recipe) => {
     // Filtrer par la bar de recherche
-    if (data.searchBar && !recipe.name.includes(data.searchBar)) {
+    if (data.searchBar && !recipe.name.toLowerCase().includes(data.searchBar.toLowerCase())) {
       return false;
     }
 
     // Filtrer par ingrédient
-    if (data.selectedIngredient && !recipe.ingredients.some(ingredients => ingredients.ingredient.includes(data.selectedIngredient))) {
+    if (data.selectedIngredient && !recipe.ingredients.some(ingredients => ingredients.ingredient.toLowerCase().includes(data.selectedIngredient.toLowerCase()))) {
       return false;
     }
     
     // Filtrer par appareil
-    if (data.selectedAppliance && !recipe.appliance.includes(data.selectedAppliance)) {
+    if (data.selectedAppliance && !recipe.appliance.toLowerCase().includes(data.selectedAppliance.toLowerCase())) {
       return false;
     }
     // Filtrer par ustensile
-    if (data.selectedUstensil && !recipe.ustensils.some(ustensil => ustensil.includes(data.selectedUstensil))) {
+    if (data.selectedUstensil && !recipe.ustensils.some(ustensil => ustensil.toLowerCase().includes(data.selectedUstensil.toLowerCase()))) {
       return false;
     }
 

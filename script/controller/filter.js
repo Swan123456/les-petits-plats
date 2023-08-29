@@ -7,7 +7,7 @@ export function filterRecipes(data, tabRecipes, filters) {
   // Filtre par la barre de recherche
   if (data.searchBar) {
     for (let i = recipesFiltrees.length - 1; i >= 0; i--) {
-      if (!recipesFiltrees[i].name.includes(data.searchBar)) {
+      if (!recipesFiltrees[i].name.toLowerCase().includes(data.searchBar.toLowerCase())) {
         recipesFiltrees.splice(i, 1);
       }
     }
@@ -16,7 +16,7 @@ export function filterRecipes(data, tabRecipes, filters) {
   // Filtre par ingrédient
   if (data.selectedIngredient) {
     for (let i = recipesFiltrees.length - 1; i >= 0; i--) {
-      if (!recipesFiltrees[i].ingredients.some(ingredient => ingredient.ingredient.includes(data.selectedIngredient))) {
+      if (!recipesFiltrees[i].ingredients.some(ingredient => ingredient.ingredient.toLowerCase().includes(data.selectedIngredient.toLowerCase()))) {
         recipesFiltrees.splice(i, 1);
       }
     }
@@ -25,7 +25,7 @@ export function filterRecipes(data, tabRecipes, filters) {
   // Filtre par appareil
   if (data.selectedAppliance) {
     for (let i = recipesFiltrees.length - 1; i >= 0; i--) {
-      if (!recipesFiltrees[i].appliance.includes(data.selectedAppliance)) {
+      if (!recipesFiltrees[i].appliance.toLowerCase().includes(data.selectedAppliance.toLowerCase())) {
         recipesFiltrees.splice(i, 1);
       }
     }
@@ -34,7 +34,7 @@ export function filterRecipes(data, tabRecipes, filters) {
   // Filtre par ustensile
   if (data.selectedUstensil) {
     for (let i = recipesFiltrees.length - 1; i >= 0; i--) {
-      if (!recipesFiltrees[i].ustensils.some(ustensil => ustensil.includes(data.selectedUstensil))) {
+      if (!recipesFiltrees[i].ustensils.some(ustensil => ustensil.toLowerCase().includes(data.selectedUstensil.toLowerCase()))) {
         recipesFiltrees.splice(i, 1);
       }
     }

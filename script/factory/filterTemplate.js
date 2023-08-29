@@ -158,6 +158,7 @@ export function createIngredientsFilter(recipes) {
   const ingredientsSet = new Set(ingredientsList);
   // Convertit l'ensemble en tableau sans doublons
   const ingredients = Array.from(ingredientsSet);
+
   ingredients.forEach((ingredient) => {
     content += `<option value="${ingredient}">${ingredient}</option>`;
   });
